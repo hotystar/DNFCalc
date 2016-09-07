@@ -1,0 +1,1 @@
+docker run -dt --restart=always --name dfcalc -p 8888:80 -v /e/work/dfcalc/html:/home/ubuntu/dfcalc dfcalc 
