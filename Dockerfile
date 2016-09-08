@@ -24,4 +24,4 @@ VOLUME ["/home/ubuntu/dfcalc"]
 EXPOSE 80
 
 ADD ubuntu/start.sh /start.sh
-CMD ["./start.sh"]
+CMD ["sudo ./start.sh"]
