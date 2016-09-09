@@ -173,6 +173,13 @@
                                 <td>암속성 저항</td>
                                 <td><span id="char_stat_dark_resist">50</span></td>
                             </tr>
+                            
+                            <tr><td colspan=2></td></tr>
+                            
+                            <tr>
+                                <td>물리 공격력 증가</td>
+                                <td><span id="char_stat_">10</span>%</td>
+                            </tr>
                             </tbody>
                         </table>
                     </div>
@@ -181,16 +188,76 @@
         </div>
     </div>
     
-    
-    
-    
+    <div class="ui small modal" id="equipment_modal">
+        <div class="header">장비 변경</div>
+        <div class="content">
+            <div class="ui stackable grid">
+                <div class="six wide column">
+                    <div class="ui form">
+                        <div class="field">
+                            <label>장비</label>
+                            <select class="ui search dropdown" id="equipment_modal_itemlist">
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="ten wide column">
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
+
+
 <script type="text/javascript">
+    var static_itemdata = {};
+    
+    $('#equipment_modal').modal({
+        inverted: true,
+    });
+    
+    $('#equipment_modal_itemlist').dropdown();
+
     function clickEquipment(part)
     {
-        var id = '#equipment_' + part
-        $('#test').html(part)
+        if (static_itemdata[part])
+        {
+            showEquipmentModal(part);
+        }
+        else
+        {
+            $.post("/getitemlist/" + part + "/", function(data) {
+                static_itemdata[part] = JSON.parse(data);
+                showEquipmentModal(part);
+            }).fail(function() {
+                alert('error');
+            });
+        }
+        
+    }
+    
+    function clearEquipmentModal()
+    {
+        $('#equipment_modal_itemlist').val('');
+        $('#equipment_modal_itemlist').attr('placeholder', '');
+        $('#equipment_modal_itemlist option').remove();
+    }
+    
+    function showEquipmentModal(part)
+    {
+        clearEquipmentModal();
+        
+        for (var i = 0; i < static_itemdata[part].length; ++i)
+        {
+            var data = static_itemdata[part][i];
+            $('#equipment_modal_itemlist').append($('<option>', {
+                value: i,
+                text: data,
+            }));
+        }
+        
+        $('#equipment_modal').modal('show');
     }
     
 </script>
