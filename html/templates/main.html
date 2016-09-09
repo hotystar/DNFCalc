@@ -1,15 +1,197 @@
 {% extends "layout.html" %}
+{% block head %}
+<style>
+    .equipment {
+        position: relative;
+        width:178px;
+        height:139px;
+        background-image:url(/static/images/equipment.png);
+        
+    }
+    .guild_equipment {
+        position: relative;
+        width:129px;
+        height:123px;
+        background-image:url(/static/images/guild_equipment.png);
+    }
+    
+    .itemslot {
+        position:absolute;
+        width:28px; height:28px;
+        background-image:url()
+    }
+    
+    
+</style>
+{% endblock %}
+
 {% block body %}
-<table class = "table table-striped">
-    <tr>
-        <th>Type</th>
-        <th>Description</th>
-    </tr>
-    {% for i in range(index) %}
-    <tr>
-        <td>{{ elements[i] }}</td>
-        <td>this means {{ elements[i] }}</td>
-    </tr>
-    {% endfor %}
-</table>
+<div class="ui container">
+    <br><hr>
+    <span>구아악 갸아악</span>
+    <div class="ui divider"></div>
+    
+    <div class="ui stackable grid">
+        <div class="ten wide column">
+            <div class="ui top attached tabular menu">
+                <div class="active item">설정</div>
+            </div>
+            <div class="ui bottom attached active tab segment">
+                <span id="test"></span>
+                <p></p>
+                <p></p>
+                <p></p>
+            </div>
+        </div>
+        <div class="six wide column">
+            <div class="ui card" style="margin: 0 auto;">
+                <div class="image">
+                    <div class="equipment" style="margin: 0 auto; margin-top:20px; margin-bottom:20px;">
+                        <a class="itemslot" style="left:111px; top:6px;" id="equipment_weapon" onclick="clickEquipment('weapon');" href="javascript:void(0)"></a>
+                        
+                        <a class="itemslot" style="left:7px; top:6px;" id="equipment_shoulder" onclick="clickEquipment('shoulder');" href="javascript:void(0)"></a>
+                        <a class="itemslot" style="left:39px; top:6px;" id="equipment_top" onclick="clickEquipment('top');" href="javascript:void(0)"></a>
+                        <a class="itemslot" style="left:7px; top:38px;" id="equipment_pants" onclick="clickEquipment('pants');" href="javascript:void(0)"></a>
+                        <a class="itemslot" style="left:39px; top:38px;" id="equipment_belt" onclick="clickEquipment('belt');" href="javascript:void(0)"></a>
+                        <a class="itemslot" style="left:7px; top:70px;" id="equipment_shoes" onclick="clickEquipment('shoes');" href="javascript:void(0)"></a>
+                        
+                        <a class="itemslot" style="left:111px; top:38px;" id="equipment_armlet" onclick="clickEquipment('armlet');" href="javascript:void(0)"></a>
+                        <a class="itemslot" style="left:143px; top:38px;" id="equipment_necklace" onclick="clickEquipment('necklace');" href="javascript:void(0)"></a>
+                        <a class="itemslot" style="left:143px; top:70px;" id="equipment_ring" onclick="clickEquipment('ring');" href="javascript:void(0)"></a>
+                        
+                        <a class="itemslot" style="left:111px; top:70px;" id="equipment_sub" onclick="clickEquipment('sub');" href="javascript:void(0)"></a>
+                        <a class="itemslot" style="left:111px; top:102px;" id="equipment_earring" onclick="clickEquipment('earring');" href="javascript:void(0)"></a>
+                        <a class="itemslot" style="left:143px; top:102px;" id="equipment_stone" onclick="clickEquipment('stone');" href="javascript:void(0)"></a>
+                        
+                        <a class="itemslot" style="left:143px; top:6px;" id="equipment_title" onclick="clickEquipment('title');" href="javascript:void(0)"></a>
+                        <a class="itemslot" style="left:41px; top:74px;" id="equipment_creature" onclick="clickEquipment('creature');" href="javascript:void(0)"></a>
+                    </div>
+                </div>
+                    
+                <div class="content">
+                    <div class="header">
+                    </div>
+                    <div class="description">
+                        <table class="ui black compact selectable small table">
+                            <thead>
+                            <tr>
+                                <th class="seven wide">능력치</th>
+                                <th class="nine wide">값</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>힘</td>
+                                <td><span id="char_stat_force">2010</span></td>
+                            </tr>
+                            <tr>
+                                <td>지능</td>
+                                <td><span id="char_stat_intel">1500</span></td>
+                            </tr>
+                            <tr>
+                                <td>체력</td>
+                                <td><span id="char_stat_stamina">2010</span></td>
+                            </tr>
+                            <tr>
+                                <td>정신력</td>
+                                <td><span id="char_stat_mental">2010</span></td>
+                            </tr>
+                            
+                            <tr><td colspan=2></td></tr>
+                            
+                            <tr>
+                                <td>물리 공격력</td>
+                                <td><span id="char_stat_physical_atk">1500</span></td>
+                            </tr>
+                            <tr>
+                                <td>마법 공격력</td>
+                                <td><span id="char_stat_magical_atk">1010</span></td>
+                            </tr>
+                            <tr>
+                                <td>독립 공격력</td>
+                                <td><span id="char_stat_independent_atk">1010</span></td>
+                            </tr>
+                            
+                            <tr>
+                                <td>물리 크리티컬</td>
+                                <td><span id="char_stat_physical_crit">80.12</span>%</td>
+                            </tr>
+                            <tr>
+                                <td>마법 크리티컬</td>
+                                <td><span id="char_stat_magic_crit">20.0</span>%</td>
+                            </tr>
+                            
+                            <tr><td colspan=2></td></tr>
+                            
+                            <tr>
+                                <td>공격 속도</td>
+                                <td><span id="char_stat_atk_speed">30.24</span>%</td>
+                            </tr>
+                            <tr>
+                                <td>캐스트 속도</td>
+                                <td><span id="char_stat_cast_speed">30.24</span>%</td>
+                            </tr>
+                            <tr>
+                                <td>이동 속도</td>
+                                <td><span id="char_stat_speed_speed">30.24</span>%</td>
+                            </tr>
+                            
+                            <tr><td colspan=2></td></tr>
+                            
+                            <tr>
+                                <td>화속성 강화</td>
+                                <td><span id="char_stat_fire_power">80</span></td>
+                            </tr>
+                            <tr>
+                                <td>수속성 강화</td>
+                                <td><span id="char_stat_ice_power">80</span></td>
+                            </tr>
+                            <tr>
+                                <td>명속성 강화</td>
+                                <td><span id="char_stat_light_power">80</span></td>
+                            </tr>
+                            <tr>
+                                <td>암속성 강화</td>
+                                <td><span id="char_stat_dark_power">80</span></td>
+                            </tr>
+                            
+                            <tr><td colspan=2></td></tr>
+                            
+                            <tr>
+                                <td>화속성 저항</td>
+                                <td><span id="char_stat_fire_resist">50</span></td>
+                            </tr>
+                            <tr>
+                                <td>수속성 저항</td>
+                                <td><span id="char_stat_ice_resist">50</span></td>
+                            </tr>
+                            <tr>
+                                <td>명속성 저항</td>
+                                <td><span id="char_stat_light_resist">50</span></td>
+                            </tr>
+                            <tr>
+                                <td>암속성 저항</td>
+                                <td><span id="char_stat_dark_resist">50</span></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    
+    
+    
+</div>
+
+<script type="text/javascript">
+    function clickEquipment(part)
+    {
+        var id = '#equipment_' + part
+        $('#test').html(part)
+    }
+    
+</script>
 {% endblock %}
