@@ -16,8 +16,7 @@ ADD ubuntu/uwsgi.ini /uwsgi.ini
 RUN rm /etc/nginx/sites-available/default
 COPY ubuntu/default /etc/nginx/sites-available/default
 
-COPY ubuntu/dfdg.cf.crt /etc/nginx/ssl/dfdg.cf.crt
-COPY ubuntu/dfdg.cf.key /etc/nginx/ssl/dfdg.cf.key
+COPY ubuntu/1_dnfdg.xyz_bundle.crt /etc/nginx/ssl/1_dnfdg.xyz_bundle.crt
 
 RUN pip2 install --upgrade pip
 
