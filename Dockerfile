@@ -16,12 +16,18 @@ ADD ubuntu/uwsgi.ini /uwsgi.ini
 RUN rm /etc/nginx/sites-available/default
 COPY ubuntu/default /etc/nginx/sites-available/default
 
+COPY ubuntu/dfdg.cf.crt /etc/nginx/ssl/dfdg.cf.crt
+COPY ubuntu/dfdg.cf.key /etc/nginx/ssl/dfdg.cf.key
 
-RUN pip install Flask
+RUN pip2 install --upgrade pip
+
+COPY ubuntu/requirements.txt /requirements.txt
+RUN pip install -r /requirements.txt
 
 VOLUME ["/home/ubuntu/dfcalc"]
 
 EXPOSE 80
+EXPOSE 443
 
 ADD ubuntu/start.sh /start.sh
 CMD ["/start.sh"]
